@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     ownerId: DataTypes.INTEGER,
     mediaId: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Catalogue',

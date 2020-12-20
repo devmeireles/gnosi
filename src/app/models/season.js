@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     CatalogueId: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Season',

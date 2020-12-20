@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     typeId: DataTypes.INTEGER,
     avatarId: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'User',
