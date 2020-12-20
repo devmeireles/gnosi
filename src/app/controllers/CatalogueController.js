@@ -25,7 +25,6 @@ exports.index = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  // #swagger.tags = ['Catalogue']
   try {
     const data = await CatalogueService.create(req.body);
 
@@ -46,7 +45,6 @@ exports.create = async (req, res) => {
 };
 
 exports.read = async (req, res) => {
-  // #swagger.tags = ['Catalogue']
   try {
     const { id } = await req.params;
 
@@ -69,7 +67,6 @@ exports.read = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  // #swagger.tags = ['Catalogue']
   try {
     const { id } = await req.params;
 
@@ -91,7 +88,6 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  // #swagger.tags = ['Catalogue']
   try {
     const { id } = await req.params;
 
