@@ -1,12 +1,7 @@
-// const Catalogue = require('../models/Catalogue');
-
 const db = require('../models/index');
-// const Catalogue = require('../models/catalogue');
 
-exports.getCatalogues = async (query, skip, limit) => {
+exports.enumerate = async (query, skip, limit) => {
   try {
-    // return await { query, skip, limit };
-
     return await db.Catalogue.findAll(
       {
         attributes: ['id', 'title', 'description'],
@@ -31,6 +26,56 @@ exports.getCatalogues = async (query, skip, limit) => {
         ],
       },
     );
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.create = async (data) => {
+  try {
+    return await db.Catalogue.create(data);
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.read = async (id) => {
+  try {
+    const data = await db.Catalogue.findAll({
+      where: { id },
+    });
+
+    if (data.length < 1) throw Error('Item not found');
+
+    return data;
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.update = async (data, id) => {
+  try {
+    return await db.Catalogue.update(data, {
+      where: {
+        id,
+      },
+    });
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.delete = async (id) => {
+  try {
+    const data = await db.Catalogue.destroy({
+      where: {
+        id,
+      },
+    });
+
+    if (data === 0) throw Error('Item not found');
+
+    return true;
   } catch (e) {
     throw Error(e);
   }
