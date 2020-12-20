@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const request = require('supertest');
 
 const app = require('../src/app');
@@ -8,7 +9,7 @@ describe('Testing the categories endpoints', () => {
     await db.sequelize.sync({ force: true });
   });
 
-  it('respond with a json containing the created category', (done) => {
+  test('respond with a json containing the created category', (done) => {
     const data = {
       title: 'Jest Framework',
       description: 'A Jest test',
@@ -22,7 +23,7 @@ describe('Testing the categories endpoints', () => {
       .expect(200, done);
   });
 
-  it('respond with a json containing the updated category', (done) => {
+  test('respond with a json containing the updated category', (done) => {
     const data = {
       title: 'Jest Framework',
       description: 'A Jest test with update',
@@ -36,7 +37,7 @@ describe('Testing the categories endpoints', () => {
       .expect(200, done);
   });
 
-  it('respond with a json containing a list of all categories', (done) => {
+  test('respond with a json containing a list of all categories', (done) => {
     request(app)
       .get('/category')
       .set('Accept', 'application/json')
@@ -44,7 +45,7 @@ describe('Testing the categories endpoints', () => {
       .expect(200, done);
   });
 
-  it('respond with a json containing a unique category', (done) => {
+  test('respond with a json containing a unique category', (done) => {
     request(app)
       .get('/category/1')
       .set('Accept', 'application/json')
@@ -52,7 +53,7 @@ describe('Testing the categories endpoints', () => {
       .expect(200, done);
   });
 
-  it('respond with a json stating that the category wasnt found', (done) => {
+  test('respond with a json stating that the category wasnt found', (done) => {
     request(app)
       .get('/category/5069')
       .set('Accept', 'application/json')
@@ -60,7 +61,7 @@ describe('Testing the categories endpoints', () => {
       .expect(400, done);
   });
 
-  it('respond with a json stating that the category cant be created', (done) => {
+  test('respond with a json stating that the category cant be created', (done) => {
     const data = {
       description: 'A Jest test',
     };
@@ -73,7 +74,7 @@ describe('Testing the categories endpoints', () => {
       .expect(422, done);
   });
 
-  it('should remove a category', (done) => {
+  test('should remove a category', (done) => {
     request(app)
       .delete('/category/1')
       .set('Accept', 'application/json')
@@ -81,7 +82,7 @@ describe('Testing the categories endpoints', () => {
       .expect(200, done);
   });
 
-  it('shouldnt remove a category', (done) => {
+  test('shouldnt remove a category', (done) => {
     request(app)
       .delete('/category/5069')
       .set('Accept', 'application/json')

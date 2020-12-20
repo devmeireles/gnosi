@@ -1,15 +1,6 @@
-const { body, validationResult } = require('express-validator');
 const CategoryService = require('../services/CategoryService');
 
 exports.index = async (req, res) => {
-  // #swagger.tags = ['Category']
-  // #swagger.description = 'Endpoint para obter um usuário.'
-  // #swagger.parameters['id'] = { description: 'ID do usuário.' }
-
-  /* #swagger.parameters['filtro'] = {
-         description: 'Um filtro qualquer.',
-         type: 'string'
-  } */
   const page = req.body.page ? parseInt(req.body.page, 10) : 1;
   const limit = req.body.limit ? parseInt(req.body.limit, 10) : 10;
   const skip = (page * limit) - limit;
@@ -34,7 +25,6 @@ exports.index = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  // #swagger.tags = ['Category']
   try {
     const data = await CategoryService.create(req.body);
 
@@ -55,7 +45,6 @@ exports.create = async (req, res) => {
 };
 
 exports.read = async (req, res) => {
-  // #swagger.tags = ['Category']
   try {
     const { id } = await req.params;
 
@@ -78,7 +67,6 @@ exports.read = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  // #swagger.tags = ['Category']
   try {
     const { id } = await req.params;
 
@@ -100,7 +88,6 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  // #swagger.tags = ['Category']
   try {
     const { id } = await req.params;
 
