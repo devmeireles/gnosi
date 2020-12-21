@@ -47,10 +47,15 @@ The development of Gnosi is based on [TDD](https://en.wikipedia.org/wiki/Test-dr
 
 ### [Creating a feature](#creating-a-feature)
 To build a feature you need to follow these steps:
+
 **1.** Create the `.test.js` file in the `tests` folder
+
 **2.** Create the router file in the `src/app/routes` folder and use it in the `src/app.js` file
+
 **3.** Create the validation file in the `src/app/middlewares/validator` folder and use it in your created route file in the `src/app/routes` folder
+
 **4.** Create the controller file in the `src/app/controllers` folder and use it in your created route file in the `src/app/routes` folder
+
 **5.** Create the service file in the `src/app/services` folder and use it in your created controller file in the `src/app/controllers` folder
 
 ### Folder Structure
