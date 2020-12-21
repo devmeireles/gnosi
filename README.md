@@ -6,7 +6,7 @@ Without a doubt this is the most important part of the project, here is the hear
 - [Installation](#installation)
 - [Configurations](#configurations)
 - [Step-by-step](#step-by-step)
-    - [Creating a Feature](#create-feature)
+	- [Creating a Feature](#creating-a-feature)
 
 
 
@@ -45,7 +45,7 @@ PROD_DB_PROTOCOL=
 
 The development of Gnosi is based on [TDD](https://en.wikipedia.org/wiki/Test-driven_development) to guarantee an effective development, for this, some steps must be followed strictly to maintain a development pattern. In addition, the entire structure is divided into controllers, models and services.
 
-### [Creating a feature](#create-feature)
+### [Creating a feature](#creating-a-feature)
 To build a feature you need to follow these steps:
 **1.** Create the `.test.js` file in the `tests` folder
 **2.** Create the router file in the `src/app/routes` folder and use it in the `src/app.js` file
