@@ -2,10 +2,9 @@ const express = require('express');
 
 const routes = express.Router();
 
-const SeasonController = require('../controllers/seasonController');
+const SeasonController = require('../controllers/SeasonController');
 const { validateSeason } = require('../middlewares/validator/SeasonValidator');
 
-// routes.get('/season', SeasonController.index);
 routes.post('/season', validateSeason, SeasonController.create);
 routes.get('/season/:id', SeasonController.read);
 routes.put('/season/:id', SeasonController.update);
