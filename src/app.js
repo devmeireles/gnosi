@@ -9,10 +9,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 const catalogue = require('./app/routes/catalogue');
-const categories = require('./app/routes/category');
+const category = require('./app/routes/category');
+const season = require('./app/routes/season');
 
 app.use(catalogue);
-app.use(categories);
+app.use(category);
+app.use(season);
 
 app.get('*', (req, res) => {
   res.status(404).send(
