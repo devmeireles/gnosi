@@ -3,76 +3,69 @@ const request = require('supertest');
 
 const app = require('../src/app');
 const db = require('../src/app/models');
-const userData = require('./util/userData');
-const catalogueData = require('./util/catalogueData');
-const seasonData = require('./util/seasonData');
-const episodeData = require('./util/episodeData');
+const languageData = require('./util/languageData');
 
-describe('Testing the episodes endpoints', () => {
+exports.languages = describe('Testing the languages endpoints', () => {
   beforeAll(async () => {
     await db.sequelize.sync({ force: true });
-
-    await userData.createUser();
-    await catalogueData.createCatalogue();
-    await seasonData.createSeason();
   });
 
-  test('It should create a episode and return the created data', async (done) => {
-    const episode = await episodeData.getEpisode();
+  test('It should create a language and return the created data', async (done) => {
+    const language = await languageData.getLanguage();
     request(app)
-      .post('/episode')
-      .send(episode)
+      .post('/language')
+      .send(language)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
 
-  test('It should update a episode', async (done) => {
-    const episode = await episodeData.getEpisode();
+  test('It should update a language', async (done) => {
+    const language = await languageData.getLanguage();
     request(app)
-      .put('/episode/1')
-      .send(episode)
+      .put('/language/1')
+      .send(language)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
 
-  test('It should return a episode', (done) => {
+  test('It should return a language', (done) => {
     request(app)
-      .get('/episode/1')
+      .get('/language/1')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
 
-  test("It should return a json stating that the episode wasn't found", (done) => {
+  test("It should return a json stating that the language wasn't found", (done) => {
     request(app)
-      .get('/episode/5069')
+      .get('/language/5069')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(400, done);
   });
 
-  test("It shouldn't create a episode", (done) => {
+  test("It shouldn't create a language", (done) => {
     request(app)
-      .post('/episode')
+      .post('/language')
       .send({})
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(422, done);
   });
 
-  test('It should remove a episode', (done) => {
+  test('It should remove a language', (done) => {
     request(app)
-      .delete('/episode/1')
+      .delete('/language/1')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
 
-  test("It shouldn't remove a episode", (done) => {
+  test("It shouldn't remove a language", (done) => {
     request(app)
-      .delete('/episode/5069')
+      .delete('/language/5069')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(400, done);

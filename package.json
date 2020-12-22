@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "jest": {
+    "verbose": true,
     "collectCoverage": true,
     "coverageReporters": [
       "json",
@@ -12,7 +13,7 @@
     "coverageDirectory": "tests/coverage"
   },
   "scripts": {
-    "test": "jest tests --coverage",
+    "test": "jest tests --coverage --runInBand",
     "start": "node ./src/server.js",
     "start:dev": "cross-env NODE_ENV=development && nodemon ./src/server.js",
     "migrate": "npx sequelize db:migrate",
