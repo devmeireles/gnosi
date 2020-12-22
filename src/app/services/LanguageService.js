@@ -2,7 +2,7 @@ const db = require('../models/index');
 
 exports.enumerate = async (query, skip, limit) => {
   try {
-    return await db.Language.findAll();
+    return await db.Languages.findAll();
   } catch (e) {
     throw Error(e);
   }
@@ -10,7 +10,7 @@ exports.enumerate = async (query, skip, limit) => {
 
 exports.create = async (data) => {
   try {
-    return await db.Language.create(data);
+    return await db.Languages.create(data);
   } catch (e) {
     throw Error(e);
   }
@@ -18,7 +18,7 @@ exports.create = async (data) => {
 
 exports.read = async (id) => {
   try {
-    const data = await db.Language.findAll({
+    const data = await db.Languages.findAll({
       where: { id },
     });
 
@@ -32,7 +32,7 @@ exports.read = async (id) => {
 
 exports.update = async (data, id) => {
   try {
-    return await db.Language.update(data, {
+    return await db.Languages.update(data, {
       where: {
         id,
       },
@@ -44,7 +44,7 @@ exports.update = async (data, id) => {
 
 exports.delete = async (id) => {
   try {
-    const data = await db.Language.destroy({
+    const data = await db.Languages.destroy({
       where: {
         id,
       },
