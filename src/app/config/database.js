@@ -6,12 +6,19 @@ const { env } = process;
 
 module.exports = {
   development: {
-    username: 'root',
-    password: null,
-    database: 'database_development',
-    host: 'database_dev.sqlite',
-    dialect: 'sqlite',
-    logging: true,
+    username: env.DEV_DB_USERNAME,
+    password: env.DEV_DB_PASSWORD,
+    database: env.DEV_DB_NAME,
+    host: env.DEV_DB_URL,
+    dialect: env.DEV_DB_DIALECT,
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    ssl: true,
   },
   test: {
     username: 'root',

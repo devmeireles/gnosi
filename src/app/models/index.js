@@ -25,6 +25,18 @@ if (env === 'production') {
     },
     ssl: true,
   });
+} else if (env === 'development') {
+  sequelize = new Sequelize(process.env.DEV_DB_HOST, {
+    dialect: process.env.DIALECT,
+    protocol: process.env.PROTOCOL,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    ssl: true,
+  });
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
