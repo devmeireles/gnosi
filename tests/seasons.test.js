@@ -16,7 +16,7 @@ describe('Testing the seasons endpoints', () => {
     await seasonData.createSeason();
   });
 
-  test('respond with a json containing the created season', async (done) => {
+  test('It should create a season and return the created data', async (done) => {
     const season = await seasonData.getSeason();
     request(app)
       .post('/season')
@@ -24,5 +24,60 @@ describe('Testing the seasons endpoints', () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
+  });
+
+  test('It should update a season', async (done) => {
+    const season = await seasonData.getSeason();
+    request(app)
+      .put('/season/1')
+      .send(season)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test('It should return a season', (done) => {
+    request(app)
+      .get('/season/1')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test("It should return a json stating that the category wasn't found", (done) => {
+    request(app)
+      .get('/season/5069')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400, done);
+  });
+
+  test("It shouldn't create a season", (done) => {
+    request(app)
+      .post('/season')
+      .send({})
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(422, done);
+  });
+
+  test('It should remove a season', (done) => {
+    request(app)
+      .delete('/season/2')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test("It shouldn't remove a season", (done) => {
+    request(app)
+      .delete('/season/5069')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400, done);
+  });
+
+  afterAll(async () => {
+    await db.sequelize.close();
   });
 });
