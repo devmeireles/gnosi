@@ -11,10 +11,12 @@ app.use(morgan('dev'));
 const catalogue = require('./app/routes/catalogue');
 const category = require('./app/routes/category');
 const season = require('./app/routes/season');
+const episode = require('./app/routes/episode');
 
 app.use(catalogue);
 app.use(category);
 app.use(season);
+app.use(episode);
 
 app.get('*', (req, res) => {
   res.status(404).send(
