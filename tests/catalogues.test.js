@@ -5,12 +5,14 @@ const app = require('../src/app');
 const db = require('../src/app/models');
 const userData = require('./util/userData');
 const catalogueData = require('./util/catalogueData');
+const languageData = require('./util/languageData');
 
 describe('Testing the catalogues endpoints', () => {
   beforeAll(async () => {
     await db.sequelize.sync({ force: true });
 
     await userData.createUser();
+    await languageData.createLanguage();
   });
 
   test('respond with a json containing the created catalogue', async (done) => {
@@ -32,6 +34,43 @@ describe('Testing the catalogues endpoints', () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
+  });
+
+  test('It should add languages to the catalogue', async (done) => {
+    const languages = {
+      languages: [1],
+    };
+    request(app)
+      .post('/catalogue/1/language')
+      .send(languages)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test("It shouldn't add languages to the catalogue", async (done) => {
+    request(app)
+      .post('/catalogue/1/language')
+      .send({})
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400, done);
+  });
+
+  test('should remove a language from catalogue', (done) => {
+    request(app)
+      .delete('/catalogue/language/1')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test("shouldn't remove a catalogue", (done) => {
+    request(app)
+      .delete('/catalogue/language/5069')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400, done);
   });
 
   test('respond with a json containing a list of all catalogues', (done) => {
@@ -81,5 +120,9 @@ describe('Testing the catalogues endpoints', () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(400, done);
+  });
+
+  afterAll(async () => {
+    await db.sequelize.close();
   });
 });

@@ -107,3 +107,47 @@ exports.delete = async (req, res) => {
     );
   }
 };
+
+exports.addLanguage = async (req, res) => {
+  try {
+    const catalogueId = req.params.id;
+    const { languages } = req.body;
+
+    const data = await CatalogueService.addLanguage(catalogueId, languages);
+
+    return res.status(200).json(
+      {
+        success: true,
+        data,
+      },
+    );
+  } catch (e) {
+    return res.status(400).json(
+      {
+        success: false,
+        data: e.message,
+      },
+    );
+  }
+};
+
+exports.deleteLanguage = async (req, res) => {
+  try {
+    const { id } = await req.params;
+
+    await CatalogueService.deleteLanguage(id);
+
+    return res.status(200).json(
+      {
+        success: true,
+      },
+    );
+  } catch (e) {
+    return res.status(400).json(
+      {
+        success: false,
+        data: e.message,
+      },
+    );
+  }
+};
