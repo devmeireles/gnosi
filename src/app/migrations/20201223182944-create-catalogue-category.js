@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('CatalogueCategories', {
+    await queryInterface.createTable('catalogue_categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,7 +11,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Catalogues',
+          model: 'catalogues',
           key: 'id',
         },
         onDelete: 'CASCADE',
@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Categories',
+          model: 'categories',
           key: 'id',
         },
         onDelete: 'CASCADE',
@@ -36,6 +36,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('CatalogueCategories');
+    await queryInterface.dropTable('catalogue_categories');
   },
 };
