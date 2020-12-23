@@ -11,7 +11,7 @@ exports.validateEpisode = [
     .isLength({ min: 2 })
     .withMessage('Minimum 2 characters required!')
     .bail(),
-  check('seasonId')
+  check('SeasonId')
     .trim()
     .escape()
     .not()

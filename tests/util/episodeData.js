@@ -4,7 +4,7 @@ const EpisodeService = require('../../src/app/services/EpisodeService');
 exports.getEpisode = async () => ({
   title: faker.hacker.phrase(),
   description: faker.commerce.productDescription(),
-  seasonId: 1,
+  SeasonId: 1,
   mediaId: 1,
 });
 

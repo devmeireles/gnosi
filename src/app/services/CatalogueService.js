@@ -23,6 +23,11 @@ exports.enumerate = async (query, skip, limit) => {
             attributes: ['id', 'name', 'username', 'typeId'],
             as: 'owner',
           },
+          {
+            model: db.Languages,
+            as: 'languages',
+            through: { attributes: [] },
+          },
         ],
       },
     );
@@ -68,6 +73,33 @@ exports.update = async (data, id) => {
 exports.delete = async (id) => {
   try {
     const data = await db.Catalogue.destroy({
+      where: {
+        id,
+      },
+    });
+
+    if (data === 0) throw Error('Item not found');
+
+    return true;
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.addLanguage = async (catalogueId, languages) => {
+  try {
+    languages.map((language) => db.CatalogueLanguages.create({
+      catalogueId,
+      languageId: language,
+    }));
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.deleteLanguage = async (id) => {
+  try {
+    const data = await db.CatalogueLanguages.destroy({
       where: {
         id,
       },
