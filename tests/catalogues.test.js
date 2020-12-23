@@ -6,6 +6,7 @@ const db = require('../src/app/models');
 const userData = require('./util/userData');
 const catalogueData = require('./util/catalogueData');
 const languageData = require('./util/languageData');
+const categoryData = require('./util/categoryData');
 
 describe('Testing the catalogues endpoints', () => {
   beforeAll(async () => {
@@ -13,6 +14,7 @@ describe('Testing the catalogues endpoints', () => {
 
     await userData.createUser();
     await languageData.createLanguage();
+    await categoryData.createCategory();
   });
 
   test('respond with a json containing the created catalogue', async (done) => {
@@ -117,6 +119,47 @@ describe('Testing the catalogues endpoints', () => {
   test("shouldn't remove a catalogue", (done) => {
     request(app)
       .delete('/catalogue/5069')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400, done);
+  });
+
+  test('It should add categories to the catalogue', async (done) => {
+    await catalogueData.createCatalogue();
+    const categories = {
+      categories: [1],
+    };
+    request(app)
+      .post('/catalogue/2/category')
+      .send(categories)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test("It shouldn't add categories to the catalogue", async (done) => {
+    const categories = {
+      categories: [],
+    };
+    request(app)
+      .post('/catalogue/1/category')
+      .send(categories)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(422, done);
+  });
+
+  test('should remove a category from catalogue', (done) => {
+    request(app)
+      .delete('/catalogue/category/1')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test("shouldn't remove a category from the catalogue", (done) => {
+    request(app)
+      .delete('/catalogue/category/5069')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(400, done);
