@@ -8,5 +8,7 @@ exports.getLanguage = async () => ({
 exports.createLanguage = async () => {
   const languageData = await this.getLanguage();
 
-  await LanguageService.create(languageData);
+  const data = await LanguageService.create(languageData);
+
+  return data;
 };
