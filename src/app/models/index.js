@@ -58,6 +58,18 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.Catalogue.belongsToMany(db.Categories, {
+  through: 'CatalogueCategory',
+  as: 'categories',
+  foreignKey: 'catalogueId',
+});
+
+db.Categories.belongsToMany(db.Catalogue, {
+  through: 'CatalogueCategory',
+  as: 'catalogues',
+  foreignKey: 'categoryId',
+});
+
 db.Catalogue.belongsToMany(db.Languages, {
   through: 'CatalogueLanguages',
   as: 'languages',

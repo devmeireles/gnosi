@@ -151,3 +151,47 @@ exports.deleteLanguage = async (req, res) => {
     );
   }
 };
+
+exports.addCategory = async (req, res) => {
+  try {
+    const catalogueId = req.params.id;
+    const { categories } = req.body;
+
+    const data = await CatalogueService.addCategory(catalogueId, categories);
+
+    return res.status(200).json(
+      {
+        success: true,
+        data,
+      },
+    );
+  } catch (e) {
+    return res.status(400).json(
+      {
+        success: false,
+        data: e.message,
+      },
+    );
+  }
+};
+
+exports.deleteCategory = async (req, res) => {
+  try {
+    const { id } = await req.params;
+
+    await CatalogueService.deleteCategory(id);
+
+    return res.status(200).json(
+      {
+        success: true,
+      },
+    );
+  } catch (e) {
+    return res.status(400).json(
+      {
+        success: false,
+        data: e.message,
+      },
+    );
+  }
+};
