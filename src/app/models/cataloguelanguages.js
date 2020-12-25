@@ -18,11 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    catalogueId: DataTypes.INTEGER,
-    languageId: DataTypes.INTEGER,
+    catalogue_id: DataTypes.INTEGER,
+    language_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'CatalogueLanguages',
+    underscored: true,
   });
   return CatalogueLanguages;
 };

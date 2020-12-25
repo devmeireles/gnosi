@@ -16,13 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   Episode.init({
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
-    SeasonId: DataTypes.INTEGER,
-    mediaId: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    season_id: DataTypes.INTEGER,
+    media_id: DataTypes.INTEGER,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Episode',
+    underscored: true,
   });
   return Episode;
 };

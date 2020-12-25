@@ -21,13 +21,14 @@ module.exports = (sequelize, DataTypes) => {
     biography: DataTypes.TEXT,
     status: DataTypes.INTEGER,
     public: DataTypes.INTEGER,
-    typeId: DataTypes.INTEGER,
-    avatarId: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    type_id: DataTypes.INTEGER,
+    avatar_id: DataTypes.INTEGER,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'User',
+    underscored: true,
   });
   return User;
 };

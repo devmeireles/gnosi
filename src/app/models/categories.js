@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Categories',
+    underscored: true,
   });
 
   SequelizeSlugify.slugifyModel(Categories, {

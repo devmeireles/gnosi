@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     sequelize,
     modelName: 'Languages',
+    underscored: true,
   });
 
   SequelizeSlugify.slugifyModel(Languages, {

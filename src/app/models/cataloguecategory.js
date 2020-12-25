@@ -19,11 +19,12 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    catalogueId: DataTypes.INTEGER,
-    categoryId: DataTypes.INTEGER,
+    catalogue_id: DataTypes.INTEGER,
+    category_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'CatalogueCategory',
+    underscored: true,
   });
   return CatalogueCategory;
 };

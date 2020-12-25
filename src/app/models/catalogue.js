@@ -18,13 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     price: DataTypes.DECIMAL,
-    ownerId: DataTypes.INTEGER,
-    mediaId: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    owner_id: DataTypes.INTEGER,
+    media_id: DataTypes.INTEGER,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Catalogue',
+    underscored: true,
   });
   return Catalogue;
 };
