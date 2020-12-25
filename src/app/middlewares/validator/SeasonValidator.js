@@ -11,7 +11,7 @@ exports.validateSeason = [
     .isLength({ min: 2 })
     .withMessage('Minimum 2 characters required!')
     .bail(),
-  check('CatalogueId')
+  check('catalogue_id')
     .trim()
     .escape()
     .not()

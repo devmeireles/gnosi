@@ -11,12 +11,19 @@ exports.validateEpisode = [
     .isLength({ min: 2 })
     .withMessage('Minimum 2 characters required!')
     .bail(),
-  check('SeasonId')
+  check('season_id')
     .trim()
     .escape()
     .not()
     .isEmpty()
     .withMessage('The episode must belong to a season')
+    .bail(),
+  check('media_id')
+    .trim()
+    .escape()
+    .not()
+    .isEmpty()
+    .withMessage('The episode must have a media')
     .bail(),
   (req, res, next) => {
     const errors = validationResult(req);
