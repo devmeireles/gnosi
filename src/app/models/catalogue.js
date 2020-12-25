@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      models.Catalogue.hasMany(models.CatalogueObjective, { as: 'objectives' });
       models.Catalogue.hasMany(models.Season, { as: 'seasons' });
       models.Catalogue.belongsTo(models.User, { as: 'owner' });
       models.Catalogue.belongsToMany(models.Languages, {

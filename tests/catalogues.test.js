@@ -38,6 +38,25 @@ describe('Testing the catalogues endpoints', () => {
       .expect(200, done);
   });
 
+  test('It should add an objective to the catalogue', async (done) => {
+    const objective = await catalogueData.getObjective();
+    request(app)
+      .post('/catalogue/1/objective')
+      .send(objective)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  test("It shouldn't add an objective to the catalogue", async (done) => {
+    request(app)
+      .post('/catalogue/1/objective')
+      .send({})
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(422, done);
+  });
+
   test('It should add languages to the catalogue', async (done) => {
     const languages = {
       languages: [1],

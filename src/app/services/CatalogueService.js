@@ -35,6 +35,11 @@ exports.enumerate = async (query, skip, limit) => {
             through: { attributes: [] },
             attributes: ['id', 'title', 'slug'],
           },
+          {
+            model: db.CatalogueObjective,
+            as: 'objectives',
+            attributes: ['id', 'title', 'description'],
+          },
         ],
       },
     );
@@ -86,7 +91,12 @@ exports.read = async (id) => {
           through: { attributes: [] },
           attributes: ['id', 'title', 'slug'],
         },
-      ]
+        {
+          model: db.CatalogueObjective,
+          as: 'objectives',
+          attributes: ['id', 'title', 'description'],
+        },
+      ],
     });
 
     if (data.length < 1) throw Error('Item not found');
@@ -168,6 +178,35 @@ exports.addCategory = async (catalogueId, categories) => {
 exports.deleteCategory = async (id) => {
   try {
     const data = await db.CatalogueCategory.destroy({
+      where: {
+        id,
+      },
+    });
+
+    if (data === 0) throw Error('Item not found');
+
+    return true;
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.addObjective = async (catalogueId, data) => {
+  try {
+    const { title, description } = data;
+    return await db.CatalogueObjective.create({
+      title,
+      description,
+      catalogue_id: catalogueId,
+    });
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+exports.deleteObjective = async (id) => {
+  try {
+    const data = await db.CatalogueObjective.destroy({
       where: {
         id,
       },
