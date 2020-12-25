@@ -195,3 +195,47 @@ exports.deleteCategory = async (req, res) => {
     );
   }
 };
+
+exports.addObjective = async (req, res) => {
+  try {
+    const catalogueId = req.params.id;
+    const { body } = req;
+
+    const data = await CatalogueService.addObjective(catalogueId, body);
+
+    return res.status(200).json(
+      {
+        success: true,
+        data,
+      },
+    );
+  } catch (e) {
+    return res.status(400).json(
+      {
+        success: false,
+        data: e.message,
+      },
+    );
+  }
+};
+
+exports.deleteObjective = async (req, res) => {
+  try {
+    const { id } = await req.params;
+
+    await CatalogueService.deleteObjective(id);
+
+    return res.status(200).json(
+      {
+        success: true,
+      },
+    );
+  } catch (e) {
+    return res.status(400).json(
+      {
+        success: false,
+        data: e.message,
+      },
+    );
+  }
+};

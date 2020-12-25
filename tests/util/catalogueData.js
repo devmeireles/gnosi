@@ -10,6 +10,12 @@ exports.getCatalogue = async () => ({
   media_id: 1,
 });
 
+exports.getObjective = async () => ({
+  title: faker.hacker.phrase(),
+  description: faker.commerce.productDescription(),
+  catalogue_id: 1,
+});
+
 exports.createCatalogue = async () => {
   const catalogueData = await this.getCatalogue();
 
