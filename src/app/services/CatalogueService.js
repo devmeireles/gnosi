@@ -4,7 +4,7 @@ exports.enumerate = async (query, skip, limit) => {
   try {
     return await db.Catalogue.findAll(
       {
-        attributes: ['id', 'title', 'description'],
+        attributes: ['id', 'title', 'description', 'created_at'],
         include: [
           {
             model: db.Season,
@@ -55,6 +55,38 @@ exports.read = async (id) => {
   try {
     const data = await db.Catalogue.findAll({
       where: { id },
+      attributes: ['id', 'title', 'description', 'created_at'],
+      include: [
+        {
+          model: db.Season,
+          as: 'seasons',
+          attributes: ['id', 'title', 'description'],
+          include: [
+            {
+              model: db.Episode,
+              as: 'episodes',
+              attributes: ['id', 'title'],
+            },
+          ],
+        },
+        {
+          model: db.User,
+          attributes: ['id', 'name', 'username', 'type_id'],
+          as: 'owner',
+        },
+        {
+          model: db.Languages,
+          as: 'languages',
+          through: { attributes: [] },
+          attributes: ['id', 'title', 'slug'],
+        },
+        {
+          model: db.Categories,
+          as: 'categories',
+          through: { attributes: [] },
+          attributes: ['id', 'title', 'slug'],
+        },
+      ]
     });
 
     if (data.length < 1) throw Error('Item not found');

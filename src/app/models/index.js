@@ -58,35 +58,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Catalogue.belongsToMany(db.Categories, {
-  through: 'CatalogueCategory',
-  as: 'categories',
-  foreignKey: 'catalogueId',
-});
-
-db.Categories.belongsToMany(db.Catalogue, {
-  through: 'CatalogueCategory',
-  as: 'catalogues',
-  foreignKey: 'categoryId',
-});
-
-db.Catalogue.belongsToMany(db.Languages, {
-  through: 'CatalogueLanguages',
-  as: 'languages',
-  foreignKey: 'catalogueId',
-});
-
-db.Languages.belongsToMany(db.Catalogue, {
-  through: 'CatalogueLanguages',
-  as: 'catalogues',
-  foreignKey: 'languageId',
-});
-
-db.Episode.belongsTo(db.Season);
-db.Season.hasMany(db.Episode, { as: 'episodes' });
-db.Season.belongsTo(db.Catalogue, { foreignKey: 'CatalogueId', as: 'catalogues' });
-db.Catalogue.hasMany(db.Season, { as: 'seasons' });
-db.Catalogue.belongsTo(db.User, { as: 'owner' });
-db.User.hasMany(db.Catalogue, { foreignKey: 'ownerId' });
-
 module.exports = db;
