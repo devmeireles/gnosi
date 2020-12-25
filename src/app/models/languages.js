@@ -12,7 +12,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.Languages.belongsToMany(models.Catalogue, {
+        through: 'CatalogueLanguages',
+        as: 'catalogues',
+        foreignKey: 'languageId',
+      });
     }
   }
   Languages.init({
@@ -29,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     sequelize,
     modelName: 'Languages',
+    underscored: true,
   });
 
   SequelizeSlugify.slugifyModel(Languages, {

@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Seasons', {
+    await queryInterface.createTable('seasons', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,25 +14,25 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-      CatalogueId: {
+      catalogue_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Catalogues',
+          model: 'catalogues',
           key: 'id',
         },
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Seasons');
+    await queryInterface.dropTable('seasons');
   },
 };

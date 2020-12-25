@@ -4,7 +4,7 @@ exports.enumerate = async (query, skip, limit) => {
   try {
     return await db.Catalogue.findAll(
       {
-        attributes: ['id', 'title', 'description'],
+        attributes: ['id', 'title', 'description', 'created_at'],
         include: [
           {
             model: db.Season,
@@ -20,18 +20,20 @@ exports.enumerate = async (query, skip, limit) => {
           },
           {
             model: db.User,
-            attributes: ['id', 'name', 'username', 'typeId'],
+            attributes: ['id', 'name', 'username', 'type_id'],
             as: 'owner',
           },
           {
             model: db.Languages,
             as: 'languages',
             through: { attributes: [] },
+            attributes: ['id', 'title', 'slug'],
           },
           {
             model: db.Categories,
             as: 'categories',
             through: { attributes: [] },
+            attributes: ['id', 'title', 'slug'],
           },
         ],
       },
@@ -53,6 +55,38 @@ exports.read = async (id) => {
   try {
     const data = await db.Catalogue.findAll({
       where: { id },
+      attributes: ['id', 'title', 'description', 'created_at'],
+      include: [
+        {
+          model: db.Season,
+          as: 'seasons',
+          attributes: ['id', 'title', 'description'],
+          include: [
+            {
+              model: db.Episode,
+              as: 'episodes',
+              attributes: ['id', 'title'],
+            },
+          ],
+        },
+        {
+          model: db.User,
+          attributes: ['id', 'name', 'username', 'type_id'],
+          as: 'owner',
+        },
+        {
+          model: db.Languages,
+          as: 'languages',
+          through: { attributes: [] },
+          attributes: ['id', 'title', 'slug'],
+        },
+        {
+          model: db.Categories,
+          as: 'categories',
+          through: { attributes: [] },
+          attributes: ['id', 'title', 'slug'],
+        },
+      ]
     });
 
     if (data.length < 1) throw Error('Item not found');
@@ -94,8 +128,8 @@ exports.delete = async (id) => {
 exports.addLanguage = async (catalogueId, languages) => {
   try {
     languages.map((language) => db.CatalogueLanguages.create({
-      catalogueId,
-      languageId: language,
+      catalogue_id: catalogueId,
+      language_id: language,
     }));
   } catch (e) {
     throw Error(e);
@@ -122,8 +156,8 @@ exports.addCategory = async (catalogueId, categories) => {
   try {
     categories.map((category) => {
       db.CatalogueCategory.create({
-        catalogueId,
-        categoryId: category,
+        catalogue_id: catalogueId,
+        category_id: category,
       });
     });
   } catch (e) {

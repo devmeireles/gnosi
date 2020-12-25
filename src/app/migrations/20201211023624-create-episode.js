@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Episodes', {
+    await queryInterface.createTable('episodes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,29 +15,29 @@ module.exports = {
         allowNull: true,
         type: Sequelize.TEXT,
       },
-      SeasonId: {
+      season_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Seasons',
+          model: 'seasons',
           key: 'id',
         },
       },
-      mediaId: {
+      media_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Episodes');
+    await queryInterface.dropTable('episodes');
   },
 };

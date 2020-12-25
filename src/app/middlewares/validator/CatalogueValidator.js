@@ -11,6 +11,20 @@ exports.validateCatalogue = [
     .isLength({ min: 2 })
     .withMessage('Minimum 2 characters required!')
     .bail(),
+  check('owner_id')
+    .trim()
+    .escape()
+    .not()
+    .isEmpty()
+    .withMessage('The catalogue must belong to a user')
+    .bail(),
+  check('media_id')
+    .trim()
+    .escape()
+    .not()
+    .isEmpty()
+    .withMessage('The catalogue must have a media')
+    .bail(),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(422).json({ success: false, errors: errors.array() });
@@ -32,4 +46,4 @@ exports.validateCatalogueCategory = [
     if (!errors.isEmpty()) return res.status(422).json({ success: false, errors: errors.array() });
     next();
   },
-]
+];

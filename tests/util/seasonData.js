@@ -4,7 +4,7 @@ const SeasonService = require('../../src/app/services/SeasonService');
 exports.getSeason = async () => ({
   title: faker.hacker.phrase(),
   description: faker.commerce.productDescription(),
-  CatalogueId: 1,
+  catalogue_id: 1,
 });
 
 exports.createSeason = async () => {

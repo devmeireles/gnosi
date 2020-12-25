@@ -6,8 +6,8 @@ exports.getCatalogue = async () => ({
   title: faker.hacker.phrase(),
   description: faker.commerce.productDescription(),
   price: faker.commerce.price(),
-  ownerId: 1,
-  mediaId: 1,
+  owner_id: 1,
+  media_id: 1,
 });
 
 exports.createCatalogue = async () => {

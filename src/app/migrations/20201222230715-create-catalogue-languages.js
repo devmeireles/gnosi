@@ -1,41 +1,41 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('CatalogueLanguages', {
+    await queryInterface.createTable('catalogue_languages', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      catalogueId: {
+      catalogue_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Catalogues',
+          model: 'catalogues',
           key: 'id',
         },
         onDelete: 'CASCADE',
       },
-      languageId: {
+      language_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Languages',
+          model: 'languages',
           key: 'id',
         },
         onDelete: 'CASCADE',
       },
-      createdAt: {
+      created_at: {
         allowNull: true,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: true,
         type: Sequelize.DATE,
       },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('CatalogueLanguages');
+    await queryInterface.dropTable('catalogue_languages');
   },
 };
