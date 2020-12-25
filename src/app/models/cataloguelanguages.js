@@ -17,6 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+    },
+    slug: {
+      type: DataTypes.TEXT,
     },
     catalogue_id: DataTypes.INTEGER,
     language_id: DataTypes.INTEGER,

@@ -27,11 +27,13 @@ exports.enumerate = async (query, skip, limit) => {
             model: db.Languages,
             as: 'languages',
             through: { attributes: [] },
+            attributes: ['id', 'title', 'slug'],
           },
           {
             model: db.Categories,
             as: 'categories',
             through: { attributes: [] },
+            attributes: ['id', 'title', 'slug'],
           },
         ],
       },
