@@ -15,7 +15,7 @@ module.exports = {
         allowNull: true,
         type: Sequelize.TEXT,
       },
-      SeasonId: {
+      season_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -23,15 +23,15 @@ module.exports = {
           key: 'id',
         },
       },
-      mediaId: {
+      media_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },

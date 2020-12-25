@@ -14,7 +14,7 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-      CatalogueId: {
+      catalogue_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -22,11 +22,11 @@ module.exports = {
           key: 'id',
         },
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },

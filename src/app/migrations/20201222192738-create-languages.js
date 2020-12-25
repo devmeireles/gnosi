@@ -21,12 +21,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 1,
       },
-      createdAt: {
-        allowNull: true,
+      created_at: {
+        allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
-        allowNull: true,
+      updated_at: {
+        allowNull: false,
         type: Sequelize.DATE,
       },
     });

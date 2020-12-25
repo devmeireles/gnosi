@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL,
       },
-      ownerId: {
+      owner_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -27,16 +27,16 @@ module.exports = {
           key: 'id',
         },
       },
-      mediaId: {
+      media_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      createdAt: {
+      created_at: {
         allowNull: true,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: true,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,

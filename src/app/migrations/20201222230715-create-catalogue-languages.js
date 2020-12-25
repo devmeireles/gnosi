@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      catalogueId: {
+      catalogue_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -16,7 +16,7 @@ module.exports = {
         },
         onDelete: 'CASCADE',
       },
-      languageId: {
+      language_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -25,11 +25,11 @@ module.exports = {
         },
         onDelete: 'CASCADE',
       },
-      createdAt: {
+      created_at: {
         allowNull: true,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: true,
         type: Sequelize.DATE,
       },

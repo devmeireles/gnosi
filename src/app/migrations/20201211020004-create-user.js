@@ -37,20 +37,20 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
-      typeId: {
+      type_id: {
         allowNull: true,
         type: Sequelize.INTEGER,
       },
-      avatarId: {
+      avatar_id: {
         allowNull: true,
         type: Sequelize.INTEGER,
       },
-      createdAt: {
+      created_at: {
         allowNull: true,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: true,
         type: Sequelize.DATE,
       },
