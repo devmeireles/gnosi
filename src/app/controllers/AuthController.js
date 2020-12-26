@@ -8,7 +8,7 @@ exports.login = async (req, res) => {
     const user = await UserService.findByUsername(username);
 
     if (!user || !(await bcrypt.compare(password, user.password)))
-      return res.status(400).send({ error: 'Invalid login data' });
+      return res.status(401).send({ error: 'Invalid login data' });
 
     user.password = undefined;
 
