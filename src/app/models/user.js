@@ -1,4 +1,6 @@
+/* eslint-disable no-param-reassign */
 const { Model } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -17,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
-      username: DataTypes.STRING,
+      username: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        unique: true,
+      },
       biography: DataTypes.TEXT,
       status: DataTypes.INTEGER,
       public: DataTypes.INTEGER,
@@ -32,5 +38,11 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
+
+  User.beforeCreate(async (user, options) => {
+    const hash = await bcrypt.hash(user.password, 10);
+    user.password = hash;
+  });
+
   return User;
 };
