@@ -14,6 +14,8 @@ exports.login = async (req, res) => {
 
     const token = await AuthService.generateToken({ id: user.id });
 
+    await AuthService.createLoginLog(user.id);
+
     return res.send({
       user,
       token,
