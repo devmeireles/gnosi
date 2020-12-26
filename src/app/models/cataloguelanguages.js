@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class CatalogueLanguages extends Model {
@@ -13,24 +11,27 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  CatalogueLanguages.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+  CatalogueLanguages.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      title: {
+        type: DataTypes.STRING,
+      },
+      slug: {
+        type: DataTypes.TEXT,
+      },
+      catalogue_id: DataTypes.INTEGER,
+      language_id: DataTypes.INTEGER,
     },
-    title: {
-      type: DataTypes.STRING,
-    },
-    slug: {
-      type: DataTypes.TEXT,
-    },
-    catalogue_id: DataTypes.INTEGER,
-    language_id: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'CatalogueLanguages',
-    underscored: true,
-  });
+    {
+      sequelize,
+      modelName: 'CatalogueLanguages',
+      underscored: true,
+    }
+  );
   return CatalogueLanguages;
 };

@@ -21,11 +21,9 @@ app.use(episode);
 app.use(language);
 
 app.get('*', (req, res) => {
-  res.status(404).send(
-    {
-      success: false,
-    },
-  );
+  res.status(404).send({
+    success: false,
+  });
 });
 
 module.exports = app;

@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 const SequelizeSlugify = require('sequelize-slugify');
 
@@ -19,22 +17,24 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Languages.init({
-    title: {
-      type: DataTypes.STRING,
-      unique: true,
+  Languages.init(
+    {
+      title: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      slug: {
+        type: DataTypes.TEXT,
+        unique: true,
+      },
+      status: DataTypes.INTEGER,
     },
-    slug: {
-      type: DataTypes.TEXT,
-      unique: true,
-    },
-    status: DataTypes.INTEGER,
-  },
-  {
-    sequelize,
-    modelName: 'Languages',
-    underscored: true,
-  });
+    {
+      sequelize,
+      modelName: 'Languages',
+      underscored: true,
+    }
+  );
 
   SequelizeSlugify.slugifyModel(Languages, {
     source: ['title'],

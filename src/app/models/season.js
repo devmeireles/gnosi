@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Season extends Model {
@@ -14,16 +12,19 @@ module.exports = (sequelize, DataTypes) => {
       models.Season.belongsTo(models.Catalogue, { foreignKey: 'CatalogueId', as: 'catalogues' });
     }
   }
-  Season.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    catalogue_id: DataTypes.INTEGER,
-    created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
-  }, {
-    sequelize,
-    modelName: 'Season',
-    underscored: true,
-  });
+  Season.init(
+    {
+      title: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      catalogue_id: DataTypes.INTEGER,
+      created_at: DataTypes.DATE,
+      updated_at: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      modelName: 'Season',
+      underscored: true,
+    }
+  );
   return Season;
 };

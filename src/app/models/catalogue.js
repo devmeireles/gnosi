@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Catalogue extends Model {
@@ -25,18 +23,21 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Catalogue.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    price: DataTypes.DECIMAL,
-    owner_id: DataTypes.INTEGER,
-    media_id: DataTypes.INTEGER,
-    created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
-  }, {
-    sequelize,
-    modelName: 'Catalogue',
-    underscored: true,
-  });
+  Catalogue.init(
+    {
+      title: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      price: DataTypes.DECIMAL,
+      owner_id: DataTypes.INTEGER,
+      media_id: DataTypes.INTEGER,
+      created_at: DataTypes.DATE,
+      updated_at: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      modelName: 'Catalogue',
+      underscored: true,
+    }
+  );
   return Catalogue;
 };

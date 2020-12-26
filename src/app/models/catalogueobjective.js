@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class CatalogueObjective extends Model {
@@ -13,18 +11,21 @@ module.exports = (sequelize, DataTypes) => {
       models.CatalogueObjective.belongsTo(models.Catalogue);
     }
   }
-  CatalogueObjective.init({
-    catalogue_id: DataTypes.INTEGER,
-    title: {
-      type: DataTypes.STRING,
+  CatalogueObjective.init(
+    {
+      catalogue_id: DataTypes.INTEGER,
+      title: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.TEXT,
+      },
     },
-    description: {
-      type: DataTypes.TEXT,
-    },
-  }, {
-    sequelize,
-    modelName: 'CatalogueObjective',
-    underscored: true,
-  });
+    {
+      sequelize,
+      modelName: 'CatalogueObjective',
+      underscored: true,
+    }
+  );
   return CatalogueObjective;
 };

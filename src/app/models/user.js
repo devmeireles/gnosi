@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -14,22 +12,25 @@ module.exports = (sequelize, DataTypes) => {
       models.User.hasMany(models.Catalogue, { foreignKey: 'ownerId' });
     }
   }
-  User.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    username: DataTypes.STRING,
-    biography: DataTypes.TEXT,
-    status: DataTypes.INTEGER,
-    public: DataTypes.INTEGER,
-    type_id: DataTypes.INTEGER,
-    avatar_id: DataTypes.INTEGER,
-    created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
-  }, {
-    sequelize,
-    modelName: 'User',
-    underscored: true,
-  });
+  User.init(
+    {
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
+      username: DataTypes.STRING,
+      biography: DataTypes.TEXT,
+      status: DataTypes.INTEGER,
+      public: DataTypes.INTEGER,
+      type_id: DataTypes.INTEGER,
+      avatar_id: DataTypes.INTEGER,
+      created_at: DataTypes.DATE,
+      updated_at: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      modelName: 'User',
+      underscored: true,
+    }
+  );
   return User;
 };

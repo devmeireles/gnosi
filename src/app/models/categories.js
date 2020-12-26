@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require('sequelize');
 
 const SequelizeSlugify = require('sequelize-slugify');
 
@@ -19,22 +17,25 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Categories.init({
-    title: {
-      type: DataTypes.STRING,
-      unique: true,
+  Categories.init(
+    {
+      title: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      slug: {
+        type: DataTypes.TEXT,
+        unique: true,
+      },
+      description: DataTypes.TEXT,
+      status: DataTypes.INTEGER,
     },
-    slug: {
-      type: DataTypes.TEXT,
-      unique: true,
-    },
-    description: DataTypes.TEXT,
-    status: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'Categories',
-    underscored: true,
-  });
+    {
+      sequelize,
+      modelName: 'Categories',
+      underscored: true,
+    }
+  );
 
   SequelizeSlugify.slugifyModel(Categories, {
     source: ['title'],

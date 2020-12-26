@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -9,7 +10,6 @@ const app = require('./app.js');
 
 app.listen(port, () => {
   if (environment === 'development') {
-    // eslint-disable-next-line no-console
     console.log(`App listening at http://localhost:${port}`);
   }
 });
