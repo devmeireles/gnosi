@@ -2,6 +2,8 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Node.js CI
+env: 
+  AUTHKEY: e9e8a962d170a9d2004bd64ccb552f
 
 on:
   push:
