@@ -3,7 +3,7 @@ const request = require('supertest');
 
 const app = require('../src/app');
 const db = require('../src/app/models');
-const userData = require('./util/userData');
+const factory = require('./factories/factories');
 
 describe('Testing the auth endpoints', () => {
   beforeAll(async () => {
@@ -11,15 +11,16 @@ describe('Testing the auth endpoints', () => {
   });
 
   test('It should validate the login and generate a jwt', async (done) => {
-    const user = await userData.createUser();
-    const { username, password } = user;
-    const loginData = {
-      username,
-      password,
-    };
+    const user = await factory.create('User', {
+      password: 'aStrongPassword',
+    });
+
     request(app)
       .post('/auth/login')
-      .send(loginData)
+      .send({
+        username: user.username,
+        password: 'aStrongPassword',
+      })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
